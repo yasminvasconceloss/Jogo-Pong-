@@ -1,3 +1,7 @@
 ﻿#canvas {
-    border: 5px dashed #761682;
+    border: 5px dashed #761682;  /* cor da borda do campo */
+    background: url(fundopong.png); /*inseri imagem de fundo */
+    background-size: 1380px;        /*defini o tamanho da imagem - centralizado*/
+   
 }
+    
