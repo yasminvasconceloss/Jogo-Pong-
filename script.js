@@ -32,7 +32,7 @@ function iniciarJogo() {
     oponenteParaCima = false;
 
     //Configuração da dimensão e posicionamento inicial da bola
-    bolaRaio = 10;
+    bolaRaio = 30;
     bolaPosX = canvas.width / 2;
     bolaPosY = canvas.height / 2;
 
@@ -217,3 +217,5 @@ function loopGame() {
 $(function () {
     iniciarJogo();
 });
+
+
