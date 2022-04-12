@@ -3,6 +3,7 @@ var canvas, context,
     barraWidth, barraHeigth,
     jogadorPosX, jogadorPosY,
     teclaCimaPressionada, teclaBaixoPressionada,
+    teclaWPressionada, teclaSPressionada,
     oponentePosX, oponentePosY,
     oponenteParaCima,
     bolaRaio,
@@ -48,6 +49,8 @@ function iniciarJogo() {
     //Mantém a tecla como "falso" para não realizar ação
     document.addEventListener('keyup', keyUp, false);
     document.addEventListener('keydown', keyDown, false);
+    document.addEventListener('keyup',  keyW, false);
+    document.addEventListener('keydown', keyS, false);
 
     setInterval(loopGame, 30);
 }
@@ -69,6 +72,21 @@ function keyDown(e) {
     }
 }
 
+function keyW(e) {
+    if (e.keyCode == 87) {
+        teclaWPressionada = false;
+    } else if (e.keyCode == 83) {
+        teclaSPressionada = false;
+    }
+}
+
+function keyS(e) {
+    if (e.keyCode == 87) {
+        teclaWPressionada = true;
+    } else if (e.keyCode == 83) {
+        teclaSPressionada = true;
+    }
+}
 
 function loopGame() {
 
@@ -105,18 +123,16 @@ function loopGame() {
 
     
     /****************************** OPONENTE *****************************/  
-    if (oponenteParaCima) { // caso o oponente estiver indo para cima
-        oponentePosY -= velocidadeOponente;
-        if (oponentePosY <= 0) // se a bola estiver saindo da tela
-        {
-            oponenteParaCima = false;
+    if (teclaWPressionada != teclaSPressionada) { // se o usuário precionar para cima
+        if (teclaWPressionada) { // se for para cima pressionado
+            if (oponentePosY > 0) { // se a bola não sair da tela
+                oponentePosY -= velocidadeOponente; // muda posição do jogador
+            }
         }
-    }
-    else { // se o oponente estiver se movendo para baixo
-        oponentePosY += velocidadeOponente;
-        if (oponentePosY >= canvas.height - barraHeigth) { // caso a bola estiver saindo da tela
-
-            oponenteParaCima = true;
+        else { // se for para baixo 
+            if (oponentePosY < (canvas.height - barraHeigth)) { // se a bola não saiu da tela
+                oponentePosY += velocidadeOponente; // muda posição
+            }
         }
     }
 
